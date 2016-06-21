@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# vhosts
+alias hosts='sudo subl /etc/hosts'
