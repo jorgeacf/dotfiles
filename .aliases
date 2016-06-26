@@ -2,3 +2,11 @@
 
 # vhosts
 alias hosts='sudo subl /etc/hosts'
+
+# sublime text
+alias s='subl'
+
+alias c='clear'
+alias ..='cd ..'
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
