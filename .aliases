@@ -10,3 +10,19 @@ alias c='clear'
 alias ..='cd ..'
 alias ..2='cd ../..'
 alias ..3='cd ../../..'
+
+
+alias g="git"
+alias h="history"
+
+
+colorflag='--color'
+
+# List all files colorized in long format
+alias l="ls -lF ${colorflag}"
+
+# List all files colorized in long format, including dot files
+alias la="ls -laF ${colorflag}"
+
+# List only directories
+alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
