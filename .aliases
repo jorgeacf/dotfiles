@@ -28,3 +28,5 @@ alias la="ls -laF ${colorflag}"
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
 alias ll=la
+
+alias prettyjson='python -m json.tool'
