@@ -4,4 +4,4 @@
 for file in ~/.{bash_prompt,aliases,functions,path,docker_commands,extra,exports}; do
 	[[ -r "$file" ]] && [[ -f "$file" ]] && source "$file"
 done
-unset file
+#unset file

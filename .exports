@@ -1,0 +1,6 @@
+
+export JAVA_HOME=`which java`
+
+
+export HADOOP_HOME=/opt/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin
