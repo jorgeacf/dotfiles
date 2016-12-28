@@ -1,6 +1,26 @@
 
-export JAVA_HOME=`which java`
+export JAVA_HOME=/usr
+#export JAVA_HOME=`which java`
+#echo $JAVA_HOME
 
-
+# HADOOP
 export HADOOP_HOME=/opt/hadoop
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export PATH=$PATH:$HADOOP_HOME/bin
+
+# ZOOKEEPER
+export ZOOKEEPER_HOME=/opt/zookeeper
+export PATH=$PATH:$ZOOKEEPER_HOME/bin
+
+# HBASE
+export HBASE_HOME=/opt/hbase
+export PATH=$PATH:$HBASE_HOME/bin
+
+# SPARK
+export SPARK_HOME=/opt/spark
+export PATH=$PATH:$SPARK_HOME/bin
+
+# CONSCRIPT
+export CONSCRIPT_HOME="~/.conscript"
+export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
+export PATH=$CONSCRIPT_HOME/bin:$PATH
