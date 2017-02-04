@@ -2,4 +2,4 @@
 
 ## How to use
 
-Execute ```make build`` from the root directory of this repository.
+Execute ```make build``` from the root directory of this repository.
