@@ -1,0 +1,11 @@
+
+
+git_commit(){
+	git add .
+	git commit -m "$0"
+	git push origin develop
+	git checkout master
+	git merge develop
+	git push origin master
+	git checkout develop
+}

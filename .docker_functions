@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export DOCKER_REPO_PREFIX=jorgeacf
+
+dtraceroute(){
+	docker run --rm -it \
+			--net host \
+			${DOCKER_REPO_PREFIX}/traceroute "$@"
+}

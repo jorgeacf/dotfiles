@@ -11,7 +11,6 @@ alias ..='cd ..'
 alias ..2='cd ../..'
 alias ..3='cd ../../..'
 
-
 alias g="git"
 alias h="history"
 
@@ -30,3 +29,7 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 alias ll=la
 
 alias prettyjson='python -m json.tool'
+
+alias size='du -a -h --max-depth=1 | sort -hr'
+
+alias packages="rpm -qa --queryformat '%10{size} - %-25{name} \t %{version}\n' | sort -n"

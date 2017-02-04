@@ -1,7 +1,12 @@
 
-export JAVA_HOME=/usr
+#export JAVA_HOME=/usr
 #export JAVA_HOME=`which java`
 #echo $JAVA_HOME
+
+# JAVA JDK
+export JAVA_HOME=/opt/jdk1.8.0_111
+export JRE_HOME=/opt/jdk1.8.0_111/jre
+export PATH=$PATH:/opt/jdk1.8.0_111/bin:/opt/jdk1.8.0_111/jre/bin
 
 # HADOOP
 export HADOOP_HOME=/opt/hadoop
@@ -24,3 +29,12 @@ export PATH=$PATH:$SPARK_HOME/bin
 export CONSCRIPT_HOME="~/.conscript"
 export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
 export PATH=$CONSCRIPT_HOME/bin:$PATH
+
+
+
+# Bash History Configuration
+export HISTSIZE=1000
+export HISTFILE=~/.bash_history
+export HISTTIMEFORMAT='%F %T '
+export HISTCONTROL=ignoredups
+export HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*:?:??"
