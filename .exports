@@ -30,7 +30,9 @@ export CONSCRIPT_HOME="~/.conscript"
 export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
 export PATH=$CONSCRIPT_HOME/bin:$PATH
 
-
+# CONSUL
+export CONSUL_HOME=/opt/consul
+export PATH=$PATH:$CONSUL_HOME
 
 # Bash History Configuration
 export HISTSIZE=1000
