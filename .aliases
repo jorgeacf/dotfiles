@@ -35,3 +35,5 @@ alias size='du -a -h --max-depth=1 | sort -hr'
 alias packages="rpm -qa --queryformat '%10{size} - %-25{name} \t %{version}\n' | sort -n"
 
 alias dh="./docker_helper.sh"
+
+alias pssh='pssh -i -h ~/.hosts '
