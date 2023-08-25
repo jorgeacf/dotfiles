@@ -4,35 +4,35 @@
 #echo $JAVA_HOME
 
 # JAVA JDK
-export JAVA_HOME=/opt/jdk1.8.0_111
-export JRE_HOME=/opt/jdk1.8.0_111/jre
-export PATH=$PATH:/opt/jdk1.8.0_111/bin:/opt/jdk1.8.0_111/jre/bin
+#export JAVA_HOME=/opt/jdk1.8.0_111
+#export JRE_HOME=/opt/jdk1.8.0_111/jre
+#export PATH=$PATH:/opt/jdk1.8.0_111/bin:/opt/jdk1.8.0_111/jre/bin
 
 # HADOOP
-export HADOOP_HOME=/opt/hadoop
-export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-export PATH=$PATH:$HADOOP_HOME/bin
+#export HADOOP_HOME=/opt/hadoop
+#export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+#export PATH=$PATH:$HADOOP_HOME/bin
 
 # ZOOKEEPER
-export ZOOKEEPER_HOME=/opt/zookeeper
-export PATH=$PATH:$ZOOKEEPER_HOME/bin
+#export ZOOKEEPER_HOME=/opt/zookeeper
+#export PATH=$PATH:$ZOOKEEPER_HOME/bin
 
 # HBASE
-export HBASE_HOME=/opt/hbase
-export PATH=$PATH:$HBASE_HOME/bin
+#export HBASE_HOME=/opt/hbase
+#export PATH=$PATH:$HBASE_HOME/bin
 
 # SPARK
-export SPARK_HOME=/opt/spark
-export PATH=$PATH:$SPARK_HOME/bin
+#export SPARK_HOME=/opt/spark
+#export PATH=$PATH:$SPARK_HOME/bin
 
 # CONSCRIPT
-export CONSCRIPT_HOME="~/.conscript"
-export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
-export PATH=$CONSCRIPT_HOME/bin:$PATH
+#export CONSCRIPT_HOME="~/.conscript"
+#export CONSCRIPT_OPTS="-XX:MaxPermSize=512M -Dfile.encoding=UTF-8"
+#export PATH=$CONSCRIPT_HOME/bin:$PATH
 
 # CONSUL
-export CONSUL_HOME=/opt/consul
-export PATH=$PATH:$CONSUL_HOME
+#export CONSUL_HOME=/opt/consul
+#export PATH=$PATH:$CONSUL_HOME
 
 # Bash History Configuration
 export HISTSIZE=1000

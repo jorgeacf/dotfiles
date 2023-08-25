@@ -9,3 +9,9 @@ git_commit(){
 	git push origin master
 	git checkout develop
 }
+
+git_push(){
+	git add .
+	git commit -m "Latest changes in code"
+	git push
+}
