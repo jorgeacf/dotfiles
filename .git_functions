@@ -12,6 +12,6 @@ git_commit(){
 
 git_push(){
 	git add .
-	git commit -m "Latest changes in code"
+	git commit -m "Latest changes"
 	git push
 }
