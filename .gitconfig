@@ -25,7 +25,3 @@
 	email = jorgefigueiredo@outlook.com
 [credential]
 	helper = cache --timeout=3600000
-
-# Local / OS-specific overrides (e.g. credential.helper = osxkeychain on macOS)
-[include]
-	path = ~/.gitconfig.local

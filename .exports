@@ -46,3 +46,14 @@ else
 	export HISTCONTROL=ignoredups
 	export HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*:?:??"
 fi
+
+# Load local / private exports if present
+if [[ -f ~/.exports.local ]]; then
+	source ~/.exports.local
+fi
+if [[ -f ~/.extra ]]; then
+	source ~/.extra
+fi
+if [[ -f "$(dirname "${BASH_SOURCE[0]:-$0}")/.exports.local" ]]; then
+	source "$(dirname "${BASH_SOURCE[0]:-$0}")/.exports.local"
+fi

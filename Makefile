@@ -9,8 +9,5 @@ dotfiles:
 	for file in $(shell find $(CURDIR) -maxdepth 1 -mindepth 1 -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".*.swp" -not -name ".irssi" -not -name ".gnupg" -not -name ".DS_Store"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
-	done; \
-	if [ "$$(uname -s)" = "Darwin" ]; then \
-		git config --file $(HOME)/.gitconfig.local credential.helper osxkeychain 2>/dev/null || true; \
-	fi;
+	done;
 
