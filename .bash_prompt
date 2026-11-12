@@ -4,38 +4,44 @@
 # iTerm → Profiles → Text → use 13pt Monaco with 1.1 vertical spacing.
 # vim: set filetype=sh :
 
-export TERM='gnome-256color';
+if [ -z "$TERM" ] || [ "$TERM" = "dumb" ]; then
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		export TERM='xterm-256color';
+	else
+		export TERM='gnome-256color';
+	fi;
+fi;
 
 prompt_git() {
 	local s='';
 	local branchName='';
 
 	# Check if the current directory is in a Git repository.
-	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+	if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 
 		# check if the current directory is in .git before running git checks
-		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+		if [ "$(git rev-parse --is-inside-git-dir 2>/dev/null)" = 'false' ]; then
 
 			# Ensure the index is up to date.
 			git update-index --really-refresh -q &>/dev/null;
 
 			# Check for uncommitted changes in the index.
-			if ! $(git diff --quiet --ignore-submodules --cached); then
+			if ! git diff --quiet --ignore-submodules --cached 2>/dev/null; then
 				s+='+';
 			fi;
 
 			# Check for unstaged changes.
-			if ! $(git diff-files --quiet --ignore-submodules --); then
+			if ! git diff-files --quiet --ignore-submodules -- 2>/dev/null; then
 				s+='!';
 			fi;
 
 			# Check for untracked files.
-			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+			if [ -n "$(git ls-files --others --exclude-standard 2>/dev/null)" ]; then
 				s+='?';
 			fi;
 
 			# Check for stashed files.
-			if $(git rev-parse --verify refs/stash &>/dev/null); then
+			if git rev-parse --verify refs/stash >/dev/null 2>&1; then
 				s+='$';
 			fi;
 
@@ -50,7 +56,7 @@ prompt_git() {
 
 		[ -n "${s}" ] && s=" [${s}]";
 
-		echo -e "${1}${branchName}${blue}${s}";
+		printf "%b" "${1}${branchName}${blue}${s}";
 	else
 		return;
 	fi;
@@ -100,19 +106,36 @@ else
 	hostStyle="${cyan}";
 fi;
 
+if [ -n "$ZSH_VERSION" ]; then
+	setopt PROMPT_SUBST 2>/dev/null
+	PS1="%{${bold}%}"$'\n'
+	PS1+="%{${userStyle}%}%n%{${reset}%}"
+	PS1+=" %{${white}%}at%{${reset}%} "
+	PS1+="%{${hostStyle}%}%m%{${reset}%}"
+	PS1+=" %{${white}%}in%{${reset}%} "
+	PS1+="%{${green}%}%~%{${reset}%}"
+	PS1+="\$(prompt_git \" %{${white}%}on%{${reset}%} %{${violet}%}\")"
+	PS1+=$'\n'
+	PS1+="%{${white}%}%#%{${reset}%} "
+	export PS1
+	export PROMPT="$PS1"
 
-# Set the terminal title to the current working directory.
-PS1="\[\033]0;\w\007\]";
-PS1+="\[${bold}\]\n"; # newline
-PS1+="\[${userStyle}\]\u"; # username
-PS1+="\[${white}\] at ";
-PS1+="\[${hostStyle}\]${cloud}\h"; # host
-PS1+="\[${white}\] in ";
-PS1+="\[${green}\]\w"; # working directory
-PS1+="\$(prompt_git \"${white} on ${violet}\")"; # Git repository details
-PS1+="\n";
-PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
-export PS1;
+	PS2="%{${yellow}%}→ %{${reset}%}"
+	export PS2
+else
+	# Set the terminal title to the current working directory.
+	PS1="\[\033]0;\w\007\]";
+	PS1+="\[${bold}\]\n"; # newline
+	PS1+="\[${userStyle}\]\u"; # username
+	PS1+="\[${white}\] at ";
+	PS1+="\[${hostStyle}\]${cloud}\h"; # host
+	PS1+="\[${white}\] in ";
+	PS1+="\[${green}\]\w"; # working directory
+	PS1+="\$(prompt_git \"${white} on ${violet}\")"; # Git repository details
+	PS1+="\n";
+	PS1+="\[${white}\]\$ \[${reset}\]"; # `$` (and reset color)
+	export PS1;
 
-PS2="\[${yellow}\]→ \[${reset}\]";
-export PS2;
+	PS2="\[${yellow}\]→ \[${reset}\]";
+	export PS2;
+fi;

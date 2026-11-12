@@ -4,6 +4,9 @@
 alias hosts='sudo subl /etc/hosts'
 
 # sublime text
+if ! command -v subl >/dev/null 2>&1 && [ -f "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ]; then
+	alias subl='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"'
+fi
 alias s='subl'
 
 alias c='clear'
@@ -15,7 +18,19 @@ alias g="git"
 alias d="docker"
 alias h="history"
 
-colorflag='--color'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	colorflag='-G'
+	alias size='du -h -d 1 | sort -hr'
+	if command -v brew >/dev/null 2>&1; then
+		alias packages='brew list --formula -1'
+	fi
+else
+	colorflag='--color=auto'
+	alias size='du -a -h --max-depth=1 | sort -hr'
+	if command -v rpm >/dev/null 2>&1; then
+		alias packages="rpm -qa --queryformat '%10{size} - %-25{name} \t %{version}\n' | sort -n"
+	fi
+fi
 
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
@@ -24,15 +39,15 @@ alias l="ls -lF ${colorflag}"
 alias la="ls -laF ${colorflag}"
 
 # List only directories
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
+alias lsd="ls -lF ${colorflag} | grep -E --color=never '^d'"
 
 alias ll=la
 
-alias prettyjson='python -m json.tool'
-
-alias size='du -a -h --max-depth=1 | sort -hr'
-
-alias packages="rpm -qa --queryformat '%10{size} - %-25{name} \t %{version}\n' | sort -n"
+if command -v python3 >/dev/null 2>&1; then
+	alias prettyjson='python3 -m json.tool'
+elif command -v python >/dev/null 2>&1; then
+	alias prettyjson='python -m json.tool'
+fi
 
 alias dh="./docker_helper.sh"
 

@@ -34,9 +34,15 @@
 #export CONSUL_HOME=/opt/consul
 #export PATH=$PATH:$CONSUL_HOME
 
-# Bash History Configuration
-export HISTSIZE=1000
-export HISTFILE=~/.bash_history
-export HISTTIMEFORMAT='%F %T '
-export HISTCONTROL=ignoredups
-export HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*:?:??"
+# History Configuration
+if [ -n "$ZSH_VERSION" ]; then
+	export HISTSIZE=10000
+	export SAVEHIST=10000
+	export HISTFILE=~/.zsh_history
+else
+	export HISTSIZE=1000
+	export HISTFILE=~/.bash_history
+	export HISTTIMEFORMAT='%F %T '
+	export HISTCONTROL=ignoredups
+	export HISTIGNORE="&:ls:[bf]g:exit:pwd:clear:mount:umount:[ \t]*:?:??"
+fi
